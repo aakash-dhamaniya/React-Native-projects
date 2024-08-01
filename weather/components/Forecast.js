@@ -1,10 +1,10 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import React from "react";
 import { weatherImages } from "../constants";
 import NextDaysForecast from "./NextDaysForecast";
 const Forecast = ({ foreCastData }) => {
   const { location, current, forecast } = foreCastData;
-  console.log("forcast local===>", foreCastData);
+  // console.log("forcast local===>", foreCastData);
   return (
     <View className="mx-4 flex justify-around flex-1">
       <Text className="text-white text-2xl text-center font-bold">
@@ -62,6 +62,7 @@ const Forecast = ({ foreCastData }) => {
       </View>
       <NextDaysForecast forcastDay={forecast?.forecastday} />
     </View>
+  
   );
 };
 

@@ -10,13 +10,19 @@ const SearchBar = ({ setForeCastData }) => {
   const [searchShow, setSearchShow] = useState(false);
   const [location, setLocation] = useState([]);
   const handleLocation = async (loc) => {
+    
     setLocation([]);
     const foreCastData = await fetchWeatherForecast({
       cityName: loc.name,
       days: "7",
     });
+   
+     await saveDataToLocal("city",{
+        cityName: loc.name,
+        days: "7",
+      });
     setForeCastData(foreCastData);
-    saveDataToLocal("forecast", foreCastData);
+   
   };
   const handleSearch = async (value) => {
     if (value.length > 2) {
@@ -24,11 +30,11 @@ const SearchBar = ({ setForeCastData }) => {
       setLocation(data);
     }
   };
-  const handleTextBounce = useCallback(debounce(handleSearch, 900), []);
+  const handleTextBounce = useCallback(debounce(handleSearch, 90), []);
   return (
     <View style={{ height: "7%" }} className="mx-4 relative z-50 ">
       <View
-        className="flex-row justify-end items-center rounded-full"
+        className="flex-row justify-end items-center rounded-full "
         style={{
           backgroundColor: searchShow ? theme.bgwhite(0.2) : "transparent",
         }}
@@ -39,7 +45,7 @@ const SearchBar = ({ setForeCastData }) => {
             autoFocus
             placeholder="Search city"
             placeholderTextColor={"lightgray"}
-            className="pl-6 h-10 pb-1 flex-1 text-base text-white "
+            className="pl-6 h-10 pb-1 flex-1 text-base text-white  "
           />
         )}
 
@@ -61,7 +67,7 @@ const SearchBar = ({ setForeCastData }) => {
             let borderClass = showBar ? "border-b-2 border-b-gray-400" : "";
             return (
               <TouchableOpacity
-                key={index}
+                key={loc.id}
                 className={
                   "flex-row items-center border-0 p-3 px-4 mb-1  " + borderClass
                 }

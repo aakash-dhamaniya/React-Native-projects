@@ -7,15 +7,20 @@ import SearchBar from "../components/SearchBar";
 import Forecast from "../components/Forecast";
 
 import { getDataFromLocal } from "../asyncStorage/asynStorage";
+import { fetchWeatherForecast } from "../api/weather";
 const Home = () => {
   const[foreCastData,setForeCastData]=useState([])
   useEffect(()=>{
     const getData=async()=>{
-      const data= await getDataFromLocal("forecast")
-   const parsData=JSON.parse(data)
-      // data=JSON.parse(data)
-      setForeCastData(parsData)
+      const data= await getDataFromLocal("city")
+   const parsData= await JSON.parse(data)
+      console.log(parsData);
+      // for api call to get weather details
+      const foreCastData = await fetchWeatherForecast(parsData||{"cityName": "Delhi", "days": "7"}
+      );
+      setForeCastData(foreCastData)
       
+
     }
       getData()
    
