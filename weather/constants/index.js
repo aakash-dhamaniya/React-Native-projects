@@ -1,6 +1,6 @@
 export const apiKey = "ccc5352ac28a45849f0193911242807";
 export const weatherImages = {
-  "Partly Cloudy": "hello",
+  "Partly Cloudy":  require("../assets/images/partlycloudy.png"),
   "Moderate rain": require("../assets/images/moderaterain.png"),
   "Patchy rain possible": require("../assets/images/moderaterain.png"),
   Sunny: require("../assets/images/sun.png"),
@@ -17,5 +17,13 @@ export const weatherImages = {
   other: require("../assets/images/moderaterain.png"),
 };
 
+export function getImage(icon){
+  const image=weatherImages[icon]
+  // console.log("image==>",image);
+  // console.log("functi===>",icon);
+  if(image) return image
+  return weatherImages.other
 
+  
+}
 

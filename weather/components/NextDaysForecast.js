@@ -2,10 +2,11 @@ import { View, Text, ScrollView, Image } from "react-native";
 import React from "react";
 import { CalendarDaysIcon } from "react-native-heroicons/outline";
 import { theme } from "../theme";
-import { weatherImages } from "../constants";
+import { getImage, weatherImages } from "../constants";
 
 
 const NextDaysForecast = ({ forcastDay }) => {
+  
   return (
     <View className="mb-2 space-y-3 ">
       <View className="flex-row items-center mx-5 space-x-3 ">
